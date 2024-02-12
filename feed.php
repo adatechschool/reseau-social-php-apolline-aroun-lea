@@ -58,9 +58,10 @@
                 <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez tous les message des utilisatrices
-                        auxquel est abonnée l'utilisatrice XXX
-                        (n° <?php echo $userId ?>)
+                    <p>Sur cette page vous trouverez tous les messages des utilisatrices
+                        auxquel est abonnée l'utilisatrice 
+                                          <?php echo $user ['alias'] ?>
+                        <!-- (n° /*<?php echo $userId ?>*/) -->
                     </p>
 
                 </section>
@@ -91,23 +92,23 @@
                 {
                     echo("Échec de la requete : " . $mysqli->error);
                 }
+                 while ($post = $lesInformations-> fetch_assoc())
+                 {
 
-                /**
-                 * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
-                 * A vous de retrouver comment faire la boucle while de parcours...
-                 */
-                ?>                
+                     
+                     /**
+                      * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
+                      * A vous de retrouver comment faire la boucle while de parcours...
+                      */
+                      ?>                
                 <article>
                     <h3>
                         <time datetime='2020-02-01 11:12:13' >31 février 2010 à 11h12</time>
                     </h3>
                     <address>par AreTirer</address>
                     <div>
-                        <p>Ceci est un paragraphe</p>
-                        <p>Ceci est un autre paragraphe</p>
-                        <p>... de toutes manières il faut supprimer cet 
-                            article et le remplacer par des informations en 
-                            provenance de la base de donnée</p>
+                        
+                        <p><?php echo $post['content']?></p>
                     </div>                                            
                     <footer>
                         <small>♥ 132</small>
@@ -116,11 +117,12 @@
                     </footer>
                 </article>
                 <?php
+            }
                 // et de pas oublier de fermer ici vote while
                 ?>
 
 
-            </main>
+</main>
         </div>
     </body>
 </html>

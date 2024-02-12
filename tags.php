@@ -27,6 +27,8 @@
         </header>
         <div id="wrapper">
             <?php
+            // * Etape 2: se connecter à la base de donnée
+            include 'connexion.php';            
             /**
              * Cette page est similaire à wall.php ou feed.php 
              * mais elle porte sur les mots-clés (tags)
@@ -36,11 +38,7 @@
              */
             $tagId = intval($_GET['tag_id']);
             ?>
-            <?php
-            /**
-             * Etape 2: se connecter à la base de donnée
-             */
-            include 'connexion.php';            ?>
+            
 
             <aside>
                 <?php
@@ -51,13 +49,13 @@
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 $tag = $lesInformations->fetch_assoc();
                 //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par le label et effacer la ligne ci-dessous
-                echo "<pre>" . print_r($tag, 1) . "</pre>";
+                // echo "<pre>" . print_r($tag, 1) . "</pre>";
                 ?>
                 <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez les derniers messages comportant
-                        le mot-clé XXX
+                        le mot-clé <?php echo $tag ['label'] ?>
                         (n° <?php echo $tagId ?>)
                     </p>
 
@@ -104,11 +102,7 @@
                         </h3>
                         <address>par AreTirer</address>
                         <div>
-                            <p>Ceci est un paragraphe</p>
-                            <p>Ceci est un autre paragraphe</p>
-                            <p>... de toutes manières il faut supprimer cet 
-                                article et le remplacer par des informations en 
-                                provenance de la base de donnée</p>
+                            <p> <?php echo $post ["content"]?>...</p>
                         </div>                                            
                         <footer>
                             <small>♥ 132</small>
